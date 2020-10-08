@@ -2,11 +2,13 @@
   "name": "blog-read",
   "version": "0.1.0",
   "author": "Clumsyknight",
+  "description": "Reads blog posts from my blog-api",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/Clumsynite/blog-read"
   },
+  "homepage": "https://clumsynite.github.io/blog-read",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
