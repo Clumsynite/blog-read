@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./Navbar.css";
 class Navbar extends Component {
   constructor() {
     super();
@@ -8,13 +8,13 @@ class Navbar extends Component {
     const { authenticated } = this.props;
     return (
       <div className="Navbar">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a className="navbar-brand" href="#">
-            Clumsyknight's Blog
-          </a>
+        <nav className="navbar navbar-expand-lg navbar-dark">
           <div className="container">
+            <a className="navbar-brand" href="#">
+              Clumsyknight's Blog
+            </a>
             <button
-              className="navbar-toggler"
+              className="navbar-toggler ml-auto custom-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarNav"
