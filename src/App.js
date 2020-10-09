@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import "./styles/App.css";
 import Navbar from "./components/Navbar";
+import Body from "./components/Body";
 class App extends Component {
   constructor() {
     super();
@@ -12,10 +14,16 @@ class App extends Component {
     };
   }
   render() {
-    const { authenticated, blog, user, comments } = this.state;
+    const { authenticated, blogs, user, comments } = this.state;
     return (
-      <div className="App">
+      <div className="App Fade">
         <Navbar authenticated={authenticated} />
+        <Body
+          user={user}
+          blogs={blogs}
+          comments={comments}
+          auth={authenticated}
+        />
       </div>
     );
   }
