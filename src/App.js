@@ -18,12 +18,14 @@ class App extends Component {
     return (
       <div className="App Fade">
         <Navbar authenticated={authenticated} />
-        <Body
-          user={user}
-          blogs={blogs}
-          comments={comments}
-          auth={authenticated}
-        />
+        <div className="container">
+          <Body
+            user={user}
+            blogs={blogs}
+            comments={comments}
+            auth={authenticated}
+          />
+        </div>
       </div>
     );
   }
