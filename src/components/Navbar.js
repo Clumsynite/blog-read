@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Navbar.css";
 class Navbar extends Component {
   constructor() {
     super();
@@ -8,7 +7,7 @@ class Navbar extends Component {
     const { authenticated } = this.props;
     return (
       <div className="Navbar">
-        <nav className="navbar navbar-expand-lg navbar-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container">
             <a className="navbar-brand" href="#">
               Clumsyknight's Blog
