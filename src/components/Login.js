@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Errors from './Errors'
 export default class Login extends Component {
   constructor() {
     super();
@@ -7,9 +7,12 @@ export default class Login extends Component {
       username: "",
       password: "",
       errors: [],
+      user: {},
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.postData = this.postData.bind(this);
+    this.clearErrors = this.clearErrors.bind(this)
     this.submitForm = this.submitForm.bind(this);
   }
   handleUsernameChange(e) {
@@ -18,36 +21,54 @@ export default class Login extends Component {
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
   }
-  submitForm(e) {
+  async postData(url, data) {
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: data,
+    });
+  }
+  clearErrors() {
+    this.setState({errors: []})
+  }
+async  submitForm(e) {
     e.preventDefault();
+    const url = " https://clumsy-blog.herokuapp.com/auth/login";
     const username = this.state.username;
     const password = this.state.password;
-    if(username.trim()==='' ){
-      this.setState({errors: [] })
+    await this.clearErrors()
+    if (username.trim() === "") {
+      this.setState({
+        errors: this.state.errors.concat({ msg: "Username can't be Empty" }),
+      });
     }
+    if (password.trim() === "") {
+      this.setState({
+        errors: this.state.errors.concat({ msg: "Password can't be Empty" }),
+      });
+    }
+    const data = { username, password };
+    this.setState({ user: data });
   }
   render() {
     const { errors } = this.state;
-    const errorlist = errors.map((error, index) => {
-      return (
-        <li key={index}>
-          <div className="alert alert-danger">error.msg</div>
-        </li>
-      );
-    });
     return (
       <div className="Login">
         <div className="card text-white bg-dark mx-auto text-center mx-auto">
           <h3 className="card-header">Please Login</h3>
           <div className="card-body  mx-auto">
-            <form method="POST" action="">
-              {/* https://clumsy-blog.herokuapp.com/auth/login */}
+            <form method="" action="">
               <div className="form-group">
                 <input
                   type="text"
                   placeholder="Enter Username"
                   name="username"
                   required
+                  minLength="6"
+                  autoFocus
                   className="form-control form-control-lg text-center"
                   onChange={this.handleUsernameChange}
                 />
@@ -58,6 +79,7 @@ export default class Login extends Component {
                   placeholder="Enter Password"
                   name="password"
                   required
+                  minLength="8"
                   className="form-control form-control-lg text-center"
                   onChange={this.handlePasswordChange}
                 />
@@ -65,13 +87,13 @@ export default class Login extends Component {
               <button
                 className="btn btn-primary btn-block btn-lg"
                 type="submit"
-                onSubmit={this.submitForm}
+                onClick={this.submitForm}
               >
                 Login
               </button>
             </form>
           </div>
-          {errors.length > 0 && errorlist}
+          {errors.length > 0 && <Errors errors={errors}/>}
         </div>
       </div>
     );
