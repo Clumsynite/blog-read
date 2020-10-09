@@ -11,7 +11,7 @@ export default class Login extends Component {
     };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.postData = this.postData.bind(this);
+    this.loginUser = this.loginUser.bind(this);
     this.clearErrors = this.clearErrors.bind(this)
     this.submitForm = this.submitForm.bind(this);
   }
@@ -21,7 +21,7 @@ export default class Login extends Component {
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
   }
-  async postData(url, data) {
+  async loginUser(url, data) {
     const response = await fetch(url, {
       method: "POST",
       mode: "cors",
@@ -30,6 +30,7 @@ export default class Login extends Component {
       },
       body: data,
     });
+    return response.json()
   }
   clearErrors() {
     this.setState({errors: []})
@@ -51,7 +52,16 @@ async  submitForm(e) {
       });
     }
     const data = { username, password };
-    this.setState({ user: data });
+    await this.loginUser(url, data)
+    .then(data => {
+      if(!data.user){
+      return this.setState({errors: this.state.errors.concat({msg: "User not found\nTry a different Username"})})
+      }
+      this.setState({ user: data });
+    })
+    .catch(error => {
+      this.setState({errors: error})
+    })
   }
   render() {
     const { errors } = this.state;
