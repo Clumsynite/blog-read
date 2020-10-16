@@ -1,3 +1,11 @@
+# Blog Read
+
+## Introduction
+
+Frontend built to acess and read the blogs, using [Blog-API](https://clumsy-blog.herokuapp.com/).
+
+Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
