@@ -31,21 +31,21 @@ const Login = (props) => {
 
     if (username.trim() === "") {
       setError("Username can't be Empty");
-    }
-    if (password.trim() === "") {
+    } else if (password.trim() === "") {
       setError("Password can't be Empty");
+    } else {
+      const data = { username, password };
+      await loginUser(url, data)
+        .then((data) => {
+          if (!data.user) {
+            return setError("User not found\nTry a different Username");
+          }
+          setUser(data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
     }
-    const data = { username, password };
-    await this.loginUser(url, data)
-      .then((data) => {
-        if (!data.user) {
-          return setError("User not found\nTry a different Username");
-        }
-        setUser(data);
-      })
-      .catch((error) => {
-        setError(error);
-      });
   };
 
   return (
@@ -63,7 +63,7 @@ const Login = (props) => {
                 minLength="6"
                 autoFocus
                 className="form-control form-control-lg text-center"
-                onChange={() => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -74,13 +74,13 @@ const Login = (props) => {
                 required
                 minLength="8"
                 className="form-control form-control-lg text-center"
-                onChange={() => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button
               className="btn btn-primary btn-block btn-lg"
               type="submit"
-              onClick={this.submitForm}
+              onClick={submitForm}
             >
               Login
             </button>
