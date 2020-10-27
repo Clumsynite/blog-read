@@ -17,10 +17,12 @@ function Routes() {
   return (
     <div className="Routes">
       <Router>
-        <Navbar authenticated={authenticated} />
+        <Navbar authenticated={authenticated} setAuth={setauthenticated} />
         <div className="container">
           <Switch>
-            <Route path="/login" component={Login} />
+            <Route path="/login">
+              <Login authenticated={authenticated} setAuth={setauthenticated} setUser={setuser}/>
+            </Route>
           </Switch>
         </div>
       </Router>
