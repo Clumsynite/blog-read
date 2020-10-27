@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Errors from './Errors'
+import Errors from "./Errors";
 export default class Login extends Component {
   constructor() {
     super();
@@ -12,7 +12,7 @@ export default class Login extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.loginUser = this.loginUser.bind(this);
-    this.clearErrors = this.clearErrors.bind(this)
+    this.clearErrors = this.clearErrors.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
   handleUsernameChange(e) {
@@ -30,17 +30,17 @@ export default class Login extends Component {
       },
       body: data,
     });
-    return response.json()
+    return response.json();
   }
   clearErrors() {
-    this.setState({errors: []})
+    this.setState({ errors: [] });
   }
-async  submitForm(e) {
+  async submitForm(e) {
     e.preventDefault();
     const url = " https://clumsy-blog.herokuapp.com/auth/login";
     const username = this.state.username;
     const password = this.state.password;
-    await this.clearErrors()
+    await this.clearErrors();
     if (username.trim() === "") {
       this.setState({
         errors: this.state.errors.concat({ msg: "Username can't be Empty" }),
@@ -53,15 +53,19 @@ async  submitForm(e) {
     }
     const data = { username, password };
     await this.loginUser(url, data)
-    .then(data => {
-      if(!data.user){
-      return this.setState({errors: this.state.errors.concat({msg: "User not found\nTry a different Username"})})
-      }
-      this.setState({ user: data });
-    })
-    .catch(error => {
-      this.setState({errors: error})
-    })
+      .then((data) => {
+        if (!data.user) {
+          return this.setState({
+            errors: this.state.errors.concat({
+              msg: "User not found\nTry a different Username",
+            }),
+          });
+        }
+        this.setState({ user: data });
+      })
+      .catch((error) => {
+        this.setState({ errors: error });
+      });
   }
   render() {
     const { errors } = this.state;
@@ -103,7 +107,7 @@ async  submitForm(e) {
               </button>
             </form>
           </div>
-          {errors.length > 0 && <Errors errors={errors}/>}
+          {errors.length > 0 && <Errors errors={errors} />}
         </div>
       </div>
     );
