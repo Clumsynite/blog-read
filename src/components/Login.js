@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Error from "./Error";
+import axios from "axios";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -11,20 +12,6 @@ const Login = (props) => {
     }, 5000);
   }, [error, setError]);
 
-  const [user, setUser] = useState({});
-
-  const loginUser = async (url, data) => {
-    const response = await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: data,
-    });
-    return response.json();
-  };
-
   const submitForm = async (e) => {
     e.preventDefault();
     const url = " https://clumsy-blog.herokuapp.com/auth/login";
@@ -34,13 +21,19 @@ const Login = (props) => {
     } else if (password.trim() === "") {
       setError("Password can't be Empty");
     } else {
-      const data = { username, password };
-      await loginUser(url, data)
+      const user = { username, password };
+      axios
+        .post(url, {
+          username: username,
+          password: password,
+        })
         .then((data) => {
-          if (!data.user) {
+          console.log(data.data);
+          if (!data.data.user) {
             return setError("User not found\nTry a different Username");
           }
-          setUser(data);
+          props.setUser(data.data);
+          props.setAuth(true);
         })
         .catch((error) => {
           setError(error);
