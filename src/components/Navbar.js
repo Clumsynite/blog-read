@@ -1,6 +1,13 @@
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Navbar = (props) => {
+  const handleLogout = async () => {
+    const url = "https://clumsy-blog.herokuapp.com/auth/logout";
+    await axios.post(url);
+    props.setAuth(false);
+  };
+
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
@@ -43,13 +50,13 @@ const Navbar = (props) => {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    activeClassName="active"
+                  <div
                     className="nav-link"
-                    to="/logout"
+                    onClick={handleLogout}
+                    style={{ cursor: "pointer" }}
                   >
                     Logout
-                  </NavLink>
+                  </div>
                 </li>
               </ul>
             </div>
