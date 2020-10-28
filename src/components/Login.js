@@ -39,7 +39,6 @@ const Login = (props) => {
         })
         .then((data) => {
           setloading(false);
-          console.log(data);
           if (!data.data.user) {
             return setError("User not found\nTry a different Username");
           }
@@ -53,7 +52,8 @@ const Login = (props) => {
           cookies.set("auth", token);
         })
         .catch((error) => {
-          setError(error);
+          setloading(false)
+          setError(error.response.data.message);
         });
     }
   };
