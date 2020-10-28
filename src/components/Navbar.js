@@ -66,6 +66,7 @@ const Navbar = (props) => {
                     <NavLink
                       activeClassName="active"
                       className="nav-link"
+                      title={`${props.user.firstname} ${props.user.lastname}`}
                       to="/profile"
                     >
                       My Profile
