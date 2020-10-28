@@ -9,6 +9,7 @@
   "homepage": "https://clumsynite.github.io/blog-read",
   "private": true,
   "dependencies": {
+    "@agney/react-loading": "^0.1.2",
     "axios": "^0.21.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
