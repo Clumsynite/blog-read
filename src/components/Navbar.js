@@ -1,13 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Navbar = (props) => {
+  const history = useHistory();
+
   const handleLogout = async () => {
     const url = "https://clumsy-blog.herokuapp.com/auth/logout";
     await axios.post(url);
     props.setAuth(false);
     localStorage.clear();
     props.clearUser();
+    history.push("/login");
   };
 
   return (
