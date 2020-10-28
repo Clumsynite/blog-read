@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Blog Read
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+
+Frontend built to acess and read the blogs, using [Blog-API](https://clumsy-blog.herokuapp.com/).
+
+Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
