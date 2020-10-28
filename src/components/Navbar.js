@@ -63,7 +63,7 @@ const Navbar = (props) => {
                     <NavLink
                       activeClassName="active"
                       className="nav-link"
-                      to="/me"
+                      to="/profile"
                     >
                       My Profile
                     </NavLink>
