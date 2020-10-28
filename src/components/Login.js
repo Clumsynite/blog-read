@@ -27,7 +27,6 @@ const Login = (props) => {
           password: password,
         })
         .then((data) => {
-          console.log(data.data);
           if (!data.data.user) {
             return setError("User not found\nTry a different Username");
           }
