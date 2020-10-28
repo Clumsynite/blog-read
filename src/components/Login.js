@@ -21,7 +21,6 @@ const Login = (props) => {
     } else if (password.trim() === "") {
       setError("Password can't be Empty");
     } else {
-      const user = { username, password };
       axios
         .post(url, {
           username: username,
