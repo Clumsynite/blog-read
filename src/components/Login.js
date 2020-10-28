@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLoading, TailSpin } from "@agney/react-loading";
 import { useHistory } from "react-router-dom";
+import Cookies from "universal-cookie";
 import Error from "./Error";
 
 const Login = (props) => {
   const history = useHistory();
+  const cookies = new Cookies();
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
     loading: loading,
@@ -37,6 +39,7 @@ const Login = (props) => {
         })
         .then((data) => {
           setloading(false);
+          console.log(data);
           if (!data.data.user) {
             return setError("User not found\nTry a different Username");
           }
@@ -47,6 +50,7 @@ const Login = (props) => {
           localStorage.setItem("token", token);
           localStorage.setItem("user", user);
           history.push("/");
+          cookies.set("auth", token);
         })
         .catch((error) => {
           setError(error);
