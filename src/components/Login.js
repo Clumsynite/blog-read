@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Error from "./Error";
 import axios from "axios";
+import { useLoading, TailSpin } from "@agney/react-loading";
 
 const Login = (props) => {
+  const [loading, setloading] = useState(false);
+  const { containerProps, indicatorEl } = useLoading({
+    loading: loading,
+    indicator: <TailSpin width="50" />,
+  });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,12 +27,14 @@ const Login = (props) => {
     } else if (password.trim() === "") {
       setError("Password can't be Empty");
     } else {
+      setloading(true);
       axios
         .post(url, {
           username: username,
           password: password,
         })
         .then((data) => {
+          setloading(false);
           if (!data.data.user) {
             return setError("User not found\nTry a different Username");
           }
@@ -44,7 +52,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="Login">
+    <div className="Login" {...containerProps}>
       <div className="card text-white bg-dark mx-auto text-center mx-auto">
         <h3 className="card-header">Please Login</h3>
         <div className="card-body  mx-auto">
@@ -73,11 +81,14 @@ const Login = (props) => {
               />
             </div>
             <button
-              className="btn btn-primary btn-block btn-lg"
+              className="btn btn-primary btn-block btn-lg "
               type="submit"
               onClick={submitForm}
+              disabled={loading}
             >
-              Login
+              {!loading && "Login"}
+
+              {indicatorEl}
             </button>
           </form>
         </div>
