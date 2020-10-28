@@ -6,6 +6,7 @@ const Navbar = (props) => {
     const url = "https://clumsy-blog.herokuapp.com/auth/logout";
     await axios.post(url);
     props.setAuth(false);
+    localStorage.clear();
   };
 
   return (
