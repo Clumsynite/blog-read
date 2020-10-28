@@ -7,6 +7,7 @@ const Navbar = (props) => {
     await axios.post(url);
     props.setAuth(false);
     localStorage.clear();
+    props.clearUser();
   };
 
   return (
