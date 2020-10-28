@@ -33,6 +33,10 @@ const Login = (props) => {
           }
           props.setUser(data.data);
           props.setAuth(true);
+          const token = data.data.token;
+          const user = data.data.user;
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", user);
         })
         .catch((error) => {
           setError(error);
