@@ -1,8 +1,10 @@
 import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 const Navbar = (props) => {
   const history = useHistory();
+  const cookies = new Cookies();
 
   const handleLogout = async () => {
     const url = "https://clumsy-blog.herokuapp.com/auth/logout";
@@ -11,6 +13,7 @@ const Navbar = (props) => {
     localStorage.clear();
     props.clearUser();
     history.push("/login");
+    cookies.remove("auth");
   };
 
   return (
