@@ -26,41 +26,59 @@ const Navbar = (props) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          {props.authenticated && (
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    activeClassName="active"
-                    to="/blogs"
-                  >
-                    Blogs
-                  </NavLink>
-                </li>
-              </ul>
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <NavLink
-                    activeClassName="active"
-                    className="nav-link"
-                    to="/me"
-                  >
-                    My Profile
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <div
-                    className="nav-link"
-                    onClick={handleLogout}
-                    style={{ cursor: "pointer" }}
-                  >
-                    Logout
-                  </div>
-                </li>
-              </ul>
-            </div>
-          )}
+
+          <div className="collapse navbar-collapse" id="navbarNav">
+            {!props.authenticated && (
+              <div>
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="active"
+                      className="nav-link"
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+            )}
+            {props.authenticated && (
+              <div>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link"
+                      activeClassName="active"
+                      to="/blogs"
+                    >
+                      Blogs
+                    </NavLink>
+                  </li>
+                </ul>
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <NavLink
+                      activeClassName="active"
+                      className="nav-link"
+                      to="/me"
+                    >
+                      My Profile
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <div
+                      className="nav-link"
+                      onClick={handleLogout}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Logout
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     </div>
