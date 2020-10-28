@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 import Login from "./components/Login";
 
 function Routes() {
@@ -20,8 +21,13 @@ function Routes() {
         <Navbar authenticated={authenticated} setAuth={setauthenticated} />
         <div className="container">
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route path="/login">
-              <Login authenticated={authenticated} setAuth={setauthenticated} setUser={setuser}/>
+              <Login
+                authenticated={authenticated}
+                setAuth={setauthenticated}
+                setUser={setuser}
+              />
             </Route>
           </Switch>
         </div>
