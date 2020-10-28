@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Error from "./Error";
 import axios from "axios";
 import { useLoading, TailSpin } from "@agney/react-loading";
+import { useHistory } from "react-router-dom";
+import Error from "./Error";
 
 const Login = (props) => {
+  const history = useHistory();
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
     loading: loading,
@@ -44,6 +46,7 @@ const Login = (props) => {
           const user = data.data.user;
           localStorage.setItem("token", token);
           localStorage.setItem("user", user);
+          history.push("/");
         })
         .catch((error) => {
           setError(error);
