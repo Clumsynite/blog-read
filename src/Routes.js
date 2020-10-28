@@ -5,11 +5,12 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import AuthenticatedRoute from "./Routes/AuthenticatedRoute";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
 
-function Routes() {
+const Routes = () => {
   const [blogs, setblogs] = useState([]);
   const [user, setuser] = useState({});
   const [comments, setcomments] = useState([]);
@@ -33,11 +34,12 @@ function Routes() {
                 setUser={setuser}
               />
             </Route>
+            <AuthenticatedRoute exact path="/profile" component={Home} />
           </Switch>
         </div>
       </Router>
     </div>
   );
-}
+};
 
 export default Routes;
