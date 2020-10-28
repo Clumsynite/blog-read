@@ -9,7 +9,7 @@ const Login = (props) => {
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
     loading: loading,
-    indicator: <TailSpin width="50" />,
+    indicator: <TailSpin width="24" />,
   });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
