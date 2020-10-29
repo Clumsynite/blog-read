@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Error from "./Error";
 import { userLogin } from "../Api/api";
 
-const Login = () => {
+const Login = (props) => {
   const history = useHistory();
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
@@ -39,6 +39,8 @@ const Login = () => {
         const user = data.user;
         localStorage.setItem("token", token);
         localStorage.setItem("user", user);
+        props.setAuth(true);
+        props.setUser(user);
         history.push("/");
       } catch (error) {
         setloading(false);
@@ -83,7 +85,6 @@ const Login = () => {
               disabled={loading}
             >
               {!loading && "Login"}
-
               {indicatorEl}
             </button>
           </form>
