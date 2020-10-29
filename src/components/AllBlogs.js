@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Error from "./Error";
 
 const AllBlogs = () => {
   const allBlogsUrl = "https://clumsy-blog.herokuapp.com/blog/all";
-  const [blogs, setblogs] = useState([]);
 
+  const [blogs, setblogs] = useState([]);
+  const [error, seterror] = useState("");
+  const token = localStorage.getItem('token')
   const getAllBlogs = async () => {
     try {
-      const response = await axios.get(allBlogsUrl);
-      console.log(response);
+      const response = await fetch(allBlogsUrl, {
+        mode: "cors",
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      // console.log(response)
+      console.log(data);
+      setblogs(data);
       return response;
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
+      seterror(error);
       return error;
     }
   };
@@ -25,6 +37,7 @@ const AllBlogs = () => {
       <button className="btn btn-primary" onClick={handleClick}>
         Get All Blogs
       </button>
+      {error.length > 0 && <Error error={error} />}
     </div>
   );
 };
