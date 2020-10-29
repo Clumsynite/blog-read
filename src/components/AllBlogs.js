@@ -28,7 +28,7 @@ const AllBlogs = () => {
     };
     getBlogs();
     return blogs;
-  }, []);
+  }, [blogs, setblogs]);
 
   const [error, seterror] = useState("");
 
