@@ -23,6 +23,10 @@ const Routes = () => {
         const status = await ping();
         if (!status.error) {
           setserver(true);
+        } else {
+          console.error("Unknown error. Reconnecting in 10sec");
+          setserver(false);
+          setTimeout(getStatus, 10000);
         }
       }
     };
