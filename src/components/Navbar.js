@@ -15,6 +15,8 @@ const Navbar = (props) => {
   const handleLogout = async () => {
     await userLogout();
     localStorage.clear();
+    props.clearUser();
+    props.setAuth(false);
     history.push("/login");
   };
 
