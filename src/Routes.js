@@ -32,7 +32,7 @@ const Routes = () => {
     };
     getStatus();
     return server;
-  });
+  }, []);
 
   return (
     <div className="Routes">
