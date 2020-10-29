@@ -14,9 +14,8 @@ import Profile from "./components/Profile";
 import { ping } from "./Api/api";
 
 const Routes = () => {
-  const [user, setuser] = useState(localStorage.getItem("user") || {});
+  const [user] = useState(localStorage.getItem("user") || {});
   const [authenticated] = useState(!!localStorage.getItem("token"));
-  const [token, setToken] = useState(localStorage.getItem("token"));
   const [server, setserver] = useState(false);
   useEffect(() => {
     const getStatus = async () => {
