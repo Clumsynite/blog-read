@@ -4,24 +4,39 @@ import Error from "./Error";
 
 const AllBlogs = () => {
   const [blogs, setblogs] = useState([]);
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const blogs = await getAllBlogs(token);
+        setblogs(blogs);
+      } catch (error) {
+        seterror(error);
+      }
+    };
+    getBlogs();
+    return blogs;
+  });
+
   const [error, seterror] = useState("");
 
-  const handleClick = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const blogs = await getAllBlogs(token);
-      console.log(blogs);
-      setblogs(blogs);
-    } catch (error) {
-      seterror(error);
-    }
-  };
+  const blogsMap = blogs.map((blog, index) => {
+    const { author, title, content, added } = blog;
+    const fullname = `${author.firstname} ${author.lastname}`;
+    return (
+      <div key={index}>
+        <div>{title}</div>
+        <div>
+          {fullname} AKA {author.username}
+        </div>
+        <div>{content}</div>
+      </div>
+    );
+  });
+
   return (
     <div className="Blog">
-      <h1 className="text-center">Blog</h1>
-      <button className="btn btn-primary" onClick={handleClick}>
-        Get All Blogs
-      </button>
+      {blogs.length > 0 && blogsMap}
       {error.length > 0 && <Error error={error} />}
     </div>
   );
