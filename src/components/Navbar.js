@@ -1,15 +1,15 @@
 import { NavLink, useHistory } from "react-router-dom";
 import { userLogout } from "../Api/api";
-import { useLoading, Puff } from '@agney/react-loading';
+import { useLoading, Puff } from "@agney/react-loading";
 
 const Navbar = (props) => {
   const history = useHistory();
   const { containerProps, indicatorEl } = useLoading({
     loading: !props.server,
     indicator: <Puff width="28" />,
-    loaderProps:{
-      style: { color: '#ff3b3b'}
-    }
+    loaderProps: {
+      style: { color: "#00ffff" },
+    },
   });
 
   const handleLogout = async () => {
@@ -28,7 +28,18 @@ const Navbar = (props) => {
             Clumsyknight's Blog
           </NavLink>
           {indicatorEl}
-          {props.server && "Online"}
+          {props.server && (
+            <i
+              className="material-icons"
+              style={{
+                color: "#00ff80",
+                cursor: "pointer",
+              }}
+              title="Connected"
+            >
+              radio_button_unchecked
+            </i>
+          )}
           <button
             className="navbar-toggler ml-auto custom-toggler"
             type="button"
