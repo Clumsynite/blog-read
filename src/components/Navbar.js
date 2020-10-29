@@ -27,7 +27,18 @@ const Navbar = (props) => {
           <NavLink className="navbar-brand mr-2" to="/">
             Clumsyknight's Blog
           </NavLink>
-          {!props.server && <div {...containerProps}>{indicatorEl}</div>}
+          {!props.server && (
+            <div
+              style={{
+                color: "#00ff80",
+                cursor: "pointer",
+              }}
+              title="Connecting"
+              {...containerProps}
+            >
+              {indicatorEl}
+            </div>
+          )}
           {props.server && (
             <i
               className="material-icons"
