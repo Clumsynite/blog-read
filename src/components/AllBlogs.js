@@ -28,20 +28,21 @@ const AllBlogs = () => {
     };
     getBlogs();
     return blogs;
-  });
+  }, []);
 
   const [error, seterror] = useState("");
 
   const blogsMap = blogs.map((blog, index) => {
     const { author, title, content, added } = blog;
     const fullname = `${author.firstname} ${author.lastname}`;
+    const previewContent = `${content.substr(0, 150)}...`;
     return (
       <div key={index}>
         <div>{title}</div>
         <div>
           {fullname} AKA {author.username}
         </div>
-        <div>{content}</div>
+        <div>{previewContent}</div>
         <div>{added}</div>
       </div>
     );
