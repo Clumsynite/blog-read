@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLoading, TailSpin } from "@agney/react-loading";
 import { useHistory } from "react-router-dom";
-import Cookies from "universal-cookie";
 import Error from "./Error";
+
+const apiUrl = "https://clumsy-blog.herokuapp.com/auth/login"
 
 const Login = (props) => {
   const history = useHistory();
-  const cookies = new Cookies();
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
     loading: loading,
@@ -24,7 +24,6 @@ const Login = (props) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    const url = " https://clumsy-blog.herokuapp.com/auth/login";
 
     if (username.trim() === "") {
       setError("Username can't be Empty");
@@ -33,10 +32,10 @@ const Login = (props) => {
     } else {
       setloading(true);
       axios
-        .post(url, {
+        .post(apiUrl, {
           username: username,
           password: password,
-        })
+        },{withCredentials: true})
         .then((data) => {
           setloading(false);
           if (!data.data.user) {
@@ -49,11 +48,11 @@ const Login = (props) => {
           localStorage.setItem("token", token);
           localStorage.setItem("user", user);
           history.push("/");
-          cookies.set("auth", token);
         })
         .catch((error) => {
-          setloading(false)
-          setError(error.response.data.message);
+          setloading(false);
+          setError(error);
+          console.log(error);
         });
     }
   };
