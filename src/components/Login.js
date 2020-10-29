@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import Error from "./Error";
 import { userLogin } from "../Api/api";
 
-const Login = (props) => {
+const Login = () => {
   const history = useHistory();
   const [loading, setloading] = useState(false);
   const { containerProps, indicatorEl } = useLoading({
@@ -32,14 +32,10 @@ const Login = (props) => {
       setloading(true);
       try {
         const data = await userLogin({ username, password });
-
         setloading(false);
         if (!data.user) {
           return setError("Username or Password is wrong");
         }
-
-        props.setUser(data.user);
-        props.setAuth(true);
         const token = data.token;
         const user = data.user;
         localStorage.setItem("token", token);
