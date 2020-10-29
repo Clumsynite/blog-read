@@ -1,34 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { getAllBlogs } from "../Api/api";
 import Error from "./Error";
 
 const AllBlogs = () => {
-  const allBlogsUrl = "https://clumsy-blog.herokuapp.com/blog/all";
-
   const [blogs, setblogs] = useState([]);
   const [error, seterror] = useState("");
-  const token = localStorage.getItem('token')
-  const getAllBlogs = async () => {
-    try {
-      const response = await fetch(allBlogsUrl, {
-        mode: "cors",
-        headers: {
-          authorization: `Bearer ${token}`
-        }
-      });
-      const data = await response.json();
-      // console.log(response)
-      console.log(data);
-      setblogs(data);
-      return response;
-    } catch (error) {
-      console.log(error);
-      seterror(error);
-      return error;
-    }
-  };
+
   const handleClick = async () => {
-    const blogs = await getAllBlogs();
-    console.log(blogs);
+    try {
+      const token = localStorage.getItem("token");
+      const blogs = await getAllBlogs(token);
+      console.log(blogs);
+      setblogs(blogs);
+    } catch (error) {
+      seterror(error);
+    }
   };
   return (
     <div className="Blog">
