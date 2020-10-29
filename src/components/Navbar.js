@@ -23,8 +23,8 @@ const Navbar = (props) => {
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
-        <div className="container">
-          <NavLink className="navbar-brand" to="/">
+        <div className="d-flex justify-content-center align-items-center">
+          <NavLink className="navbar-brand mr-2" to="/">
             Clumsyknight's Blog
           </NavLink>
           {!props.server && <div {...containerProps}>{indicatorEl}</div>}
@@ -40,17 +40,19 @@ const Navbar = (props) => {
               radio_button_unchecked
             </i>
           )}
-          <button
-            className="navbar-toggler ml-auto custom-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+        </div>
+        <button
+          className="navbar-toggler ml-auto custom-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="container">
           {!props.authenticated && (
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ml-auto">
