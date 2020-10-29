@@ -14,8 +14,10 @@ import Profile from "./components/Profile";
 import { ping } from "./Api/api";
 
 const Routes = () => {
-  const [user] = useState(localStorage.getItem("user") || {});
-  const [authenticated] = useState(!!localStorage.getItem("token"));
+  const [user, setuser] = useState(localStorage.getItem("user") || {});
+  const [authenticated, setauthenticated] = useState(
+    localStorage.getItem("token") ? true : false
+  );
   const [server, setserver] = useState(false);
   useEffect(() => {
     const getStatus = async () => {
@@ -37,11 +39,19 @@ const Routes = () => {
   return (
     <div className="Routes">
       <Router>
-        <Navbar authenticated={authenticated} user={user} server={server} />
+        <Navbar
+          authenticated={authenticated}
+          setAuth={setauthenticated}
+          user={user}
+          clearUser={() => setuser({})}
+          server={server}
+        />
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
+            <Route path="/login">
+              <Login setAuth={setauthenticated} setUser={setuser} />
+            </Route>
             <AuthenticatedRoute exact path="/profile" component={Profile} />
             <AuthenticatedRoute exact path="/blogs" component={AllBlogs} />
             <Redirect to="/" />
