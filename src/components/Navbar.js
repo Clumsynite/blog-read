@@ -1,12 +1,19 @@
 import { NavLink, useHistory } from "react-router-dom";
-import axios from "axios";
+import { userLogout } from "../Api/api";
+import { useLoading, Puff } from '@agney/react-loading';
 
 const Navbar = (props) => {
   const history = useHistory();
+  const { containerProps, indicatorEl } = useLoading({
+    loading: !props.server,
+    indicator: <Puff width="28" />,
+    loaderProps:{
+      style: { color: '#ff3b3b'}
+    }
+  });
 
   const handleLogout = async () => {
-    const url = "https://clumsy-blog.herokuapp.com/auth/logout";
-    await axios.post(url);
+    await userLogout();
     props.setAuth(false);
     localStorage.clear();
     props.clearUser();
@@ -20,6 +27,8 @@ const Navbar = (props) => {
           <NavLink className="navbar-brand" to="/">
             Clumsyknight's Blog
           </NavLink>
+          {indicatorEl}
+          {props.server && "Online"}
           <button
             className="navbar-toggler ml-auto custom-toggler"
             type="button"
