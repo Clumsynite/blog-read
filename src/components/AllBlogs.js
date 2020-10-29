@@ -35,15 +35,19 @@ const AllBlogs = () => {
   const blogsMap = blogs.map((blog, index) => {
     const { author, title, content, added } = blog;
     const fullname = `${author.firstname} ${author.lastname}`;
-    const previewContent = `${content.substr(0, 150)}...`;
+    const limit = Math.floor(content.length / 3);
+    const previewContent = `${content.substr(0, limit)}...`;
     return (
-      <div key={index}>
-        <div>{title}</div>
-        <div>
-          {fullname} AKA {author.username}
+      <div key={index} className="card text-white bg-primary mb-2">
+        <div className="card-header text-center bg-dark">{title}</div>
+        <div className="card-body bg-light text-dark">
+          <div className="card-text ">{previewContent}</div>
         </div>
-        <div>{previewContent}</div>
-        <div>{added}</div>
+        <div className="card-footer text-white bg-primary text-right">
+          By {fullname} <strong> AKA </strong>
+          <emphasize> {author.username}</emphasize>
+        </div>
+        <div className="card-footer text-white bg-dark text-right">{added}</div>
       </div>
     );
   });
