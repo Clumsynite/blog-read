@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useLoading, TailSpin } from "@agney/react-loading";
 import { useHistory } from "react-router-dom";
 import Error from "./Error";
-
-const apiUrl = "https://clumsy-blog.herokuapp.com/auth/login"
+import { userLogin } from "../Api/api";
 
 const Login = (props) => {
   const history = useHistory();
@@ -31,29 +30,71 @@ const Login = (props) => {
       setError("Password can't be Empty");
     } else {
       setloading(true);
-      axios
-        .post(apiUrl, {
-          username: username,
-          password: password,
-        },{withCredentials: true})
-        .then((data) => {
-          setloading(false);
-          if (!data.data.user) {
-            return setError("User not found\nTry a different Username");
-          }
-          props.setUser(data.data);
-          props.setAuth(true);
-          const token = data.data.token;
-          const user = data.data.user;
-          localStorage.setItem("token", token);
-          localStorage.setItem("user", user);
-          history.push("/");
-        })
-        .catch((error) => {
-          setloading(false);
-          setError(error);
-          console.log(error);
-        });
+      try {
+        const data = await userLogin({ username, password });
+
+        setloading(false);
+        if (!data.user) {
+          return setError("Username or Password is wrong");
+        }
+
+        props.setUser(data.user);
+        props.setAuth(true);
+        const token = data.token;
+        const user = data.user;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", user);
+        history.push("/");
+      } catch (error) {
+        setloading(false);
+        setError(error);
+      }
+      // userLogin({ username, password })
+      //   .then((data) => {
+      //     console.log(data);
+      //     setError(data)
+      //     setloading(false);
+      //   })
+      //   .catch((error) => {
+      //     setError(error);
+      //     setloading(false);
+      //     console.log(error);
+      //   });
+      // if (!data.data.user) {
+      //   return setError("User not found\nTry a different Username");
+      // } else {
+      //   props.setUser(data.data);
+      //   props.setAuth(true);
+      //   const token = data.data.token;
+      //   const user = data.data.user;
+      //   localStorage.setItem("token", token);
+      //   localStorage.setItem("user", user);
+      //   history.push("/");
+      // }
+
+      // axios
+      //   .post(apiUrl, {
+      //     username: username,
+      //     password: password,
+      //   },{withCredentials: true})
+      //   .then((data) => {
+      //     setloading(false);
+      //     if (!data.data.user) {
+      //       return setError("User not found\nTry a different Username");
+      //     }
+      //     props.setUser(data.data);
+      //     props.setAuth(true);
+      //     const token = data.data.token;
+      //     const user = data.data.user;
+      //     localStorage.setItem("token", token);
+      //     localStorage.setItem("user", user);
+      //     history.push("/");
+      //   })
+      //   .catch((error) => {
+      //     setloading(false);
+      //     setError(error);
+      //     console.log(error);
+      //   });
     }
   };
 
