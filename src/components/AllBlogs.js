@@ -47,10 +47,10 @@ const AllBlogs = () => {
         </div>
         <div className="card-footer text-white bg-primary text-right d-flex justify-content-between flex-wrap">
           <div className="d-flex align-items-center">
-            By {fullname}{" "}
+            By {fullname}
             <strong>
-              <span className="badge badge-pill badge-dark"> AKA </span>
-            </strong>{" "}
+              <span className="badge badge-pill badge-dark mx-1"> AKA </span>
+            </strong>
             {author.username}
           </div>
           <div className="d-flex align-items-center">
