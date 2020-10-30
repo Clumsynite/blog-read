@@ -12,7 +12,7 @@ import Login from "./components/Login";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
 import { ping } from "./Api/api";
-
+import Particles from "./components/Particles";
 const Routes = () => {
   const [user, setuser] = useState(localStorage.getItem("user") || {});
   const [authenticated, setauthenticated] = useState(
@@ -38,6 +38,7 @@ const Routes = () => {
 
   return (
     <div className="Routes">
+    <Particles />
       <Router>
         <Navbar
           authenticated={authenticated}
