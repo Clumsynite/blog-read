@@ -38,14 +38,15 @@ _id: "5f7ddee74a0a7737982b
 
 const Profile = () => {
   const [profile, setprofile] = useState([]);
+  const [user, setUser] = useState({});
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     const getProfile = async () => {
       try {
         const data = await myProfile(token);
-        console.log(data);
         setprofile(data);
+        setUser(data.user);
       } catch (error) {
         console.error(error);
       }
@@ -55,16 +56,30 @@ const Profile = () => {
 
   return (
     <div className="Profile">
-      <h1 className="text-center">Profile</h1>
-      <button
-        className="btn btn-block btn-primary"
-        onClick={() => {
-          console.log(profile);
-        }}
-      >
-        Get Profile
-      </button>
-      {profile.length > 0 && <div className="card"></div>}
+      {profile.user && (
+        <div className="card mb-3" style={{width: "20rem"}}>
+          <div className="card-header bg-dark text-white">User Profile</div>
+          <div className="card-body bg-light">
+            {getFullname(user)}{" "}
+            <strong>
+              <span className="badge badge-pill badge-dark mx-1"> AKA </span>
+            </strong>
+            {user.username}
+          </div>
+          <div className="card-footer text-white bg-info text-right d-flex justify-content-between flex-wrap">
+            <div className="d-flex align-items-center" title="Number of Posts">
+              Blog Count: {profile.blogs.length}
+            </div>
+            <div
+              className="d-flex align-items-center"
+              title="Number of Comments"
+            >
+              <i className="material-icons mr-1">comment</i>
+              {profile.comments.length}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
