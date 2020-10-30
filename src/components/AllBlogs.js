@@ -28,7 +28,7 @@ const AllBlogs = () => {
     };
     getBlogs();
     return blogs;
-  }, [blogs, setblogs]);
+  }, []);
 
   const [error, seterror] = useState("");
 
@@ -45,7 +45,7 @@ const AllBlogs = () => {
         </div>
         <div className="card-footer text-white bg-primary text-right">
           By {fullname} <strong> AKA </strong>
-          <emphasize> {author.username}</emphasize>
+          {author.username}
         </div>
         <div className="card-footer text-white bg-dark text-right">{added}</div>
       </div>
