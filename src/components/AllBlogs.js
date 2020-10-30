@@ -35,11 +35,11 @@ const AllBlogs = () => {
     const { author, title, content, added } = blog;
     const fullname = `${author.firstname} ${author.lastname}`;
     const limit = Math.floor(content.length / 3);
-    const previewContent = `${content.substr(0, limit)}...`;
+    const previewContent = `${content.substr(0, limit)} ...`;
     return (
       <div
         key={index}
-        className="card text-white bg-primary shadow mb-5 bg-white rounded"
+        className="card text-white bg-primary shadow mb-4 bg-white rounded"
       >
         <div className="card-header text-center bg-dark">{title}</div>
         <div className="card-body bg-light text-dark">

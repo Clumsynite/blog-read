@@ -1,6 +1,6 @@
-import moment from 'moment'
+import moment from "moment";
 
-export const getRelativeTime = time => {
-  const hours = moment(time).startOf('hour').fromNow()
-  return hours
-}
+export const getRelativeTime = (time) => {
+  const hours = moment(time).startOf("hour").fromNow();
+  return hours;
+};

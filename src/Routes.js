@@ -37,7 +37,7 @@ const Routes = () => {
 
   return (
     <div className="Routes">
-    <Particles />
+      <Particles />
       <Router>
         <Navbar
           authenticated={authenticated}

@@ -21,15 +21,15 @@ const Profile = () => {
   return (
     <div className="Profile">
       <h1 className="text-center">Profile</h1>
-      <button className="btn btn-block btn-primary" onClick={() => {console.log(profile)}}>
-        {" "}
+      <button
+        className="btn btn-block btn-primary"
+        onClick={() => {
+          console.log(profile);
+        }}
+      >
         Get Profile
       </button>
-      {profile.length > 0 && (
-        <div className="card">
-
-        </div>
-      )}
+      {profile.length > 0 && <div className="card"></div>}
     </div>
   );
 };
