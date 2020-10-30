@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLoading, Bars } from "@agney/react-loading";
 import { getAllBlogs } from "../scripts/api-calls";
 import Error from "./Error";
+import {getRelativeTime} from '../scripts/helper'
 
 const AllBlogs = () => {
   const [loading, setloading] = useState(true);
@@ -45,7 +46,7 @@ const AllBlogs = () => {
           By {fullname} <strong> AKA </strong>
           {author.username}
         </div>
-        <div className="card-footer text-white bg-dark text-right">{added}</div>
+        <div className="card-footer text-white bg-dark text-right">{getRelativeTime(added)}</div>
       </div>
     );
   });
