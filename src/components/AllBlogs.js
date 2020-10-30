@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLoading, Bars } from "@agney/react-loading";
 import { getAllBlogs } from "../scripts/api-calls";
 import Error from "./Error";
-import {getRelativeTime} from '../scripts/helper'
+import { getRelativeTime } from "../scripts/helper";
 
 const AllBlogs = () => {
   const [loading, setloading] = useState(true);
@@ -37,16 +37,28 @@ const AllBlogs = () => {
     const limit = Math.floor(content.length / 3);
     const previewContent = `${content.substr(0, limit)}...`;
     return (
-      <div key={index} className="card text-white bg-primary mb-2">
+      <div
+        key={index}
+        className="card text-white bg-primary shadow mb-5 bg-white rounded"
+      >
         <div className="card-header text-center bg-dark">{title}</div>
         <div className="card-body bg-light text-dark">
           <div className="card-text ">{previewContent}</div>
         </div>
-        <div className="card-footer text-white bg-primary text-right">
-          By {fullname} <strong> AKA </strong>
-          {author.username}
+        <div className="card-footer text-white bg-primary text-right d-flex justify-content-between">
+          <div className="d-flex align-items-center">
+            By {fullname}{" "}
+            <strong>
+              {" "}
+              <span className="badge badge-pill badge-dark">AKA</span>{" "}
+            </strong>
+            {author.username}
+          </div>
+          <div className="d-flex align-items-center">
+            <i className="material-icons mr-1">access_time</i>
+            {getRelativeTime(added)}
+          </div>
         </div>
-        <div className="card-footer text-white bg-dark text-right">{getRelativeTime(added)}</div>
       </div>
     );
   });
