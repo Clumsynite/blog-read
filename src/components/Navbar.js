@@ -1,5 +1,5 @@
 import { NavLink, useHistory } from "react-router-dom";
-import { userLogout } from "../Api/api";
+import { userLogout } from "../scripts/api-calls";
 import { useLoading, Puff } from "@agney/react-loading";
 
 const Navbar = (props) => {

@@ -11,7 +11,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
-import { ping } from "./Api/api";
+import { ping } from "./scripts/api-calls";
 import Particles from "./components/Particles";
 const Routes = () => {
   const [user, setuser] = useState(localStorage.getItem("user") || {});
@@ -33,7 +33,6 @@ const Routes = () => {
       }
     };
     getStatus();
-    return server;
   });
 
   return (

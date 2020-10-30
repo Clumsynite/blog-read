@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLoading, Bars } from "@agney/react-loading";
-
-import { getAllBlogs } from "../Api/api";
+import { getAllBlogs } from "../scripts/api-calls";
 import Error from "./Error";
 
 const AllBlogs = () => {
@@ -27,7 +26,6 @@ const AllBlogs = () => {
       }
     };
     getBlogs();
-    return blogs;
   }, []);
 
   const [error, seterror] = useState("");
