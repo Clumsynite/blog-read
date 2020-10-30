@@ -51,7 +51,10 @@ const Login = (props) => {
 
   return (
     <div className="Login" {...containerProps}>
-      <div className="card text-white bg-dark mx-auto text-center mx-auto">
+      <div
+        className="card text-white bg-dark mx-auto text-center"
+        style={{ width: "18rem" }}
+      >
         <h3 className="card-header">Please Login</h3>
         <div className="card-body  mx-auto">
           <form method="" action="">
