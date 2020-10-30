@@ -45,13 +45,12 @@ const AllBlogs = () => {
         <div className="card-body bg-light text-dark">
           <div className="card-text ">{previewContent}</div>
         </div>
-        <div className="card-footer text-white bg-primary text-right d-flex justify-content-between">
+        <div className="card-footer text-white bg-primary text-right d-flex justify-content-between flex-wrap">
           <div className="d-flex align-items-center">
             By {fullname}{" "}
             <strong>
-              {" "}
-              <span className="badge badge-pill badge-dark">AKA</span>{" "}
-            </strong>
+              <span className="badge badge-pill badge-dark"> AKA </span>
+            </strong>{" "}
             {author.username}
           </div>
           <div className="d-flex align-items-center">
