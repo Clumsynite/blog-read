@@ -16,6 +16,7 @@ export const userLogin = async (user) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(user),
     });
     const data = await response.json();
@@ -29,6 +30,7 @@ export const userLogout = async () => {
   try {
     const response = await fetch(`${apiUrl}/auth/logout`, {
       method: "POST",
+      credentials: "include",
     });
     const data = await response.json();
     return data;
@@ -40,10 +42,25 @@ export const userLogout = async () => {
 export const getAllBlogs = async (token) => {
   try {
     const response = await fetch(`${apiUrl}/blog/all`, {
-      mode: "cors",
       headers: {
         authorization: `Bearer ${token}`,
       },
+      credentials: "include",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const myProfile = async (token) => {
+  try {
+    const response = await fetch(`${apiUrl}/user/me`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
     });
     const data = await response.json();
     return data;
