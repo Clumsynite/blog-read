@@ -2,8 +2,8 @@ import Particles from "react-particles-js";
 
 var style = {
   position: "absolute",
-  height: "95vh",
-  width: "95vw",
+  height: "100vh",
+  width: "100vw",
 };
 
 const ParticlesBackground = () => {
@@ -11,8 +11,8 @@ const ParticlesBackground = () => {
     <div style={style}>
       <Particles
         style={{ position: "absolute" }}
-        height="95%"
-        width="95%"
+        height="100%"
+        width="100%"
         params={{
           particles: {
             color: {
