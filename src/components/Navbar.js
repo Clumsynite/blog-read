@@ -13,11 +13,19 @@ const Navbar = (props) => {
   });
 
   const handleLogout = async () => {
-    await userLogout();
-    localStorage.clear();
-    props.clearUser();
-    props.setAuth(false);
-    history.push("/login");
+    try {
+      const data = await userLogout();
+      if (data.message === "Logged out successfully") {
+        localStorage.clear();
+        props.clearUser();
+        props.setAuth(false);
+        history.push("/login");
+      } else {
+        console.error(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
