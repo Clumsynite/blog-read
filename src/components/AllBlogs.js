@@ -10,7 +10,7 @@ const AllBlogs = () => {
     loading,
     indicator: <Bars width="100" />,
     loaderProps: {
-      style: { color: "#00ffbf" },
+      style: { color: "#007BFF" },
     },
   });
   const [blogs, setblogs] = useState([]);
