@@ -4,6 +4,7 @@ var style = {
   position: "absolute",
   height: "100vh",
   width: "100vw",
+  zIndex: '-1'
 };
 
 const ParticlesBackground = () => {
