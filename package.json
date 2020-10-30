@@ -1,5 +1,4 @@
 {
-  "proxy": "https://clumsy-blog.herokuapp.com",
   "name": "blog-read",
   "version": "0.1.0",
   "author": "Clumsyknight",
