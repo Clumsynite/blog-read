@@ -3,7 +3,7 @@ import Particles from "react-particles-js";
 var style = {
   position: "absolute",
   height: "100vh",
-  width: "100vw",
+  width: "100%",
   zIndex: '-1'
 };
 
