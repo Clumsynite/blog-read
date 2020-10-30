@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLoading, Bars } from "@agney/react-loading";
 import { getAllBlogs } from "../scripts/api-calls";
 import Error from "./Error";
-import { getRelativeTime } from "../scripts/helper";
+import { getRelativeTime, getContentPreview, getFullname } from "../scripts/helper";
 
 const AllBlogs = () => {
   const [loading, setloading] = useState(true);
@@ -33,9 +33,6 @@ const AllBlogs = () => {
 
   const blogsMap = blogs.map((blog, index) => {
     const { author, title, content, added } = blog;
-    const fullname = `${author.firstname} ${author.lastname}`;
-    const limit = Math.floor(content.length / 3);
-    const previewContent = `${content.substr(0, limit)} ...`;
     return (
       <div
         key={index}
@@ -43,11 +40,11 @@ const AllBlogs = () => {
       >
         <div className="card-header text-center bg-dark">{title}</div>
         <div className="card-body bg-light text-dark">
-          <div className="card-text ">{previewContent}</div>
+          <div className="card-text ">{getContentPreview(content)}</div>
         </div>
         <div className="card-footer text-white bg-primary text-right d-flex justify-content-between flex-wrap">
           <div className="d-flex align-items-center">
-            By {fullname}
+            By {getFullname(author)}
             <strong>
               <span className="badge badge-pill badge-dark mx-1"> AKA </span>
             </strong>
