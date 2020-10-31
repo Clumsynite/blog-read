@@ -32,7 +32,7 @@ const Navbar = (props) => {
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
         <div className="d-flex justify-content-center align-items-center">
-          <NavLink className="navbar-brand mr-2" to="/">
+          <NavLink className="navbar-brand mr-2" to="/" replace>
             Clumsyknight's Blog
           </NavLink>
           {!props.server && (
