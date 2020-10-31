@@ -78,7 +78,13 @@ const Profile = () => {
           </div>
         </div>
       )}
+      {render === "blogs" && profile.blogs.length === 0 && (
+        <div className="alert alert-info mx-auto w-75">
+          You haven't Posted anything yet
+        </div>
+      )}
       {render === "blogs" &&
+        profile.blogs.length > 0 &&
         profile.blogs.map((blog, index) => {
           return <BlogCard blog={blog} key={index} />;
         })}
