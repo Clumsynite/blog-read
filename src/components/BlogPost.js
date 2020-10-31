@@ -97,7 +97,7 @@ const BlogPost = () => {
           />
           <Editor
             apiKey="iegn84mumhivsy1it2lvc8qjfxkaav0snoxsx4u66dxlnz3g"
-            initialValue="<p>This is the initial content of the editor</p>"
+            initialValue="<p>Enter you comment here</p>"
             init={{
               height: 200,
               menubar: false,
