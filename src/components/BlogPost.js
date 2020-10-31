@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLoading, Oval } from "@agney/react-loading";
-import Error from "./Error";
 import { viewBlog } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
+import CommentCard from "../Templates/CommentCard";
+import Error from "./Error";
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -54,7 +55,7 @@ const BlogPost = () => {
         </div>
       )}
       {post.title && !loading && (
-        <div className="card shadow rounded">
+        <div className="card shadow rounded mb-5">
           <div className="card-body">
             <h1 className="card-title text-center">{post.title}</h1>
             <div className="card-subtitle my-3 text-muted d-flex justify-content-between flex-wrap">
@@ -75,6 +76,10 @@ const BlogPost = () => {
           </div>
         </div>
       )}
+      {comments.length > 0 &&
+        comments.map((comment, index) => {
+          return <CommentCard comment={comment} key={index} />;
+        })}
     </div>
   );
 };
