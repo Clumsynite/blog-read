@@ -18,7 +18,7 @@ const Card = (props) => {
       </Link>
       <div className="card-footer text-white bg-primary text-right d-flex justify-content-between flex-wrap">
         <div className="d-flex align-items-center">
-          By {getFullname(author)}
+          <i className="material-icons mr-1">account_circle</i> {getFullname(author)}
           <strong>
             <span className="badge badge-pill badge-dark mx-1"> AKA </span>
           </strong>
