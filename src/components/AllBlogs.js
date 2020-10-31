@@ -19,7 +19,7 @@ const AllBlogs = () => {
       try {
         const token = localStorage.getItem("token");
         const blogs = await getAllBlogs(token);
-        setblogs(blogs);
+        setblogs(blogs.reverse());
         setloading(false);
       } catch (error) {
         setloading(false);

@@ -24,7 +24,11 @@ const Profile = () => {
     const getProfile = async () => {
       try {
         const data = await myProfile(token);
-        setprofile(data);
+        setprofile({
+          user: data.user,
+          blogs: data.blogs.reverse(),
+          comments: data.comments.reverse(),
+        });
         setUser(data.user);
         setRender("blogs");
         setloading(false);
