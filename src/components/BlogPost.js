@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLoading, Oval } from "@agney/react-loading";
 import { viewBlog } from "../scripts/api-calls";
+import Error from "./Error";
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -21,13 +22,18 @@ const BlogPost = () => {
     const fetchPost = async () => {
       try {
         const data = await viewBlog(id, token);
-        console.log(data);
+        if (data.error) {
+          setloading(false);
+          seterror(
+            `Blog Post not found. There's a Problem fetching Post:${id}`
+          );
+          return;
+        }
         setPost(data.blog);
         setComments(data.comment);
         setloading(false);
       } catch (error) {
         console.error(error);
-        seterror(error);
         setloading(false);
       }
     };
@@ -36,12 +42,17 @@ const BlogPost = () => {
 
   return (
     <div>
+      <h3>ID: {id} </h3>
       {loading && (
         <div className="text-center my-5" {...containerProps}>
           {indicatorEl}
         </div>
       )}
-      <h3>ID: {id} </h3>
+      {error.length > 0 > 0 && (
+        <div className="w-75 mx-auto">
+          <Error error={error} />
+        </div>
+      )}
     </div>
   );
 };
