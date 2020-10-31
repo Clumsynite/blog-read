@@ -60,25 +60,30 @@ const BlogPost = () => {
     if (commentTitle.trim().length === 0) {
       seterror("Comment title can't be empty");
       return;
-    }else if(commentContent.trim().length === 0){
+    } else if (commentContent.trim().length === 0) {
       seterror("Comment content can't be empty. Template text isn't accepted");
       return;
-    }else {
-      newComment()
+    } else {
+      newComment();
     }
   };
 
   const newComment = async () => {
     try {
-      const data = await addComment(id, {
-        title: commentTitle,
-        content: commentContent
-      }, token)
-      console.log(data)
+      const data = await addComment(
+        id,
+        { title: commentTitle, content: commentContent },
+        token
+      );
+      if (!data.error) {
+        setCommentContent("");
+        setCommentTitle("");
+      }
+      console.log(data);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <div>
@@ -138,9 +143,9 @@ const BlogPost = () => {
                 "insertdatetime media table paste code help wordcount",
               ],
               toolbar:
-                "undo redo | formatselect | bold italic backcolor | \
-              alignleft aligncenter alignright alignjustify | \
-              bullist numlist outdent indent | removeformat | help",
+                "undo redo | formatselect | bold italic backcolor | " +
+                "alignleft aligncenter alignright alignjustify | " +
+                "bullist numlist outdent indent | removeformat | help",
             }}
             onEditorChange={handleEditorChange}
           />
