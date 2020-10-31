@@ -62,7 +62,7 @@ const BlogPost = () => {
       seterror("Comment title can't be empty");
       return;
     } else if (commentContent.trim().length === 0) {
-      seterror("Comment content can't be empty. Template text isn't accepted");
+      seterror("Comment content can't be empty.");
       return;
     } else {
       setPosting(true);
@@ -152,7 +152,7 @@ const BlogPost = () => {
                 "undo redo | formatselect | bold italic backcolor | " +
                 "alignleft aligncenter alignright alignjustify | " +
                 "bullist numlist outdent indent | removeformat | help",
-              placeholder: "<p>Enter you comment here</p>",
+              placeholder: "Enter you comment here",
             }}
             onEditorChange={handleEditorChange}
             value={commentContent}
