@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useLoading, Oval } from "@agney/react-loading";
+import { useLoading, Oval, TailSpin } from "@agney/react-loading";
 import { Editor } from "@tinymce/tinymce-react";
 import { viewBlog, addComment } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
@@ -66,10 +66,16 @@ const BlogPost = () => {
       seterror("Comment content can't be empty. Template text isn't accepted");
       return;
     } else {
+      setPosting(true);
       newComment();
     }
   };
 
+  const [posting, setPosting] = useState(false);
+  const { parentProps, commentLoading } = useLoading({
+    loading: !posting,
+    indicator: <TailSpin width="24" />,
+  });
   const newComment = async () => {
     try {
       const data = await addComment(
@@ -77,11 +83,13 @@ const BlogPost = () => {
         { title: commentTitle, content: commentContent },
         token
       );
+      setPosting(false);
       if (!data.error) {
         setCommentContent("");
         setCommentTitle("<p>Enter you comment here</p>");
       }
     } catch (error) {
+      setPosting(false);
       console.error(error);
     }
   };
@@ -154,8 +162,10 @@ const BlogPost = () => {
           <button
             className="btn btn-block btn-outline-secondary"
             onClick={handleClick}
+            disabled={posting}
           >
-            Post your Comment
+            {!posting && "Post your Comment"}
+            {commentLoading}
           </button>
         </div>
       )}
