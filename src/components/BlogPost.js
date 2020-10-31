@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLoading, Oval, TailSpin } from "@agney/react-loading";
 import { Editor } from "@tinymce/tinymce-react";
+import { Markup } from "interweave";
 import { viewBlog, addComment } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
 import CommentCard from "../Templates/CommentCard";
@@ -119,7 +120,9 @@ const BlogPost = () => {
                 {getRelativeTime(post.added)}
               </div>
             </div>
-            <div className="card-text">{post.content}</div>
+            <div className="card-text">
+              <Markup content={post.content} />
+            </div>
           </div>
         </div>
       )}
