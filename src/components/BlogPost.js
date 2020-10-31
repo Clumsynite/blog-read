@@ -160,6 +160,7 @@ const BlogPost = () => {
             value={commentContent}
           />
           <button
+            {...parentProps}
             className="btn btn-block btn-outline-secondary"
             onClick={handleClick}
             disabled={posting}
