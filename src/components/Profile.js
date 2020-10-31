@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import BlogCard from "../Templates/BlogCard";
 import CommentCard from "../Templates/CommentCard";
 import { useLoading, Bars } from "@agney/react-loading";
@@ -44,7 +45,7 @@ const Profile = () => {
       )}
       {profile.user && (
         <div
-          className="card mb-3 mx-auto shadow rounded"
+          className="card mb-4 mx-auto shadow rounded"
           style={{ width: "24rem" }}
         >
           <div className="card-header bg-dark text-white">
@@ -101,7 +102,19 @@ const Profile = () => {
       {render === "comments" &&
         profile.comments.length > 0 &&
         profile.comments.map((comment, index) => {
-          return <CommentCard comment={comment} key={index} />;
+          const { blog } = comment;
+          return (
+            <Link
+              to={`/blog/${blog._id}/view`}
+              className="link shadow"
+              key={index}
+            >
+              <div className="card-header text-center bg-dark text-light align-items-center">
+                You commented on <code>{blog.title}</code>
+              </div>
+              <CommentCard comment={comment} />
+            </Link>
+          );
         })}
     </div>
   );
