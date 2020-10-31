@@ -56,11 +56,6 @@ const BlogPost = () => {
           {indicatorEl}
         </div>
       )}
-      {error.length > 0 > 0 && (
-        <div className="w-75 mx-auto">
-          <Error error={error} />
-        </div>
-      )}
       {post.title && !loading && (
         <div className="card shadow rounded mb-5">
           <div className="card-body">
@@ -81,6 +76,11 @@ const BlogPost = () => {
             </div>
             <div className="card-text">{post.content}</div>
           </div>
+        </div>
+      )}
+      {error.length > 0 > 0 && (
+        <div className="w-75 mx-auto">
+          <Error error={error} />
         </div>
       )}
       {post.title && (
