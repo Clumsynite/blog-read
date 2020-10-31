@@ -50,7 +50,9 @@ const BlogPost = () => {
   }, [id, token]);
 
   const [commentTitle, setCommentTitle] = useState("");
-  const [commentContent, setCommentContent] = useState("");
+  const [commentContent, setCommentContent] = useState(
+    "<p>Enter you comment here</p>"
+  );
   const handleEditorChange = (content, editor) => {
     setCommentContent(content);
   };
@@ -77,9 +79,8 @@ const BlogPost = () => {
       );
       if (!data.error) {
         setCommentContent("");
-        setCommentTitle("");
+        setCommentTitle("<p>Enter you comment here</p>");
       }
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -148,6 +149,7 @@ const BlogPost = () => {
                 "bullist numlist outdent indent | removeformat | help",
             }}
             onEditorChange={handleEditorChange}
+            value={commentContent}
           />
           <button
             className="btn btn-block btn-outline-secondary"
