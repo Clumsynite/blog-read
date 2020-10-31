@@ -49,7 +49,7 @@ const Routes = () => {
           clearUser={() => setuser({})}
           server={server}
         />
-        <div className="container">
+        <div className="container mt-3">
           <Switch>
             <Route exact path="/" component={Home} />
             <UnauthenticatedRoute

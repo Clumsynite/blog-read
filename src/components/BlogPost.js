@@ -57,7 +57,7 @@ const BlogPost = () => {
         <div className="card shadow rounded">
           <div className="card-body">
             <h1 className="card-title text-center">{post.title}</h1>
-            <div className="card-subtitle mb-2 text-muted d-flex justify-content-between flex-wrap">
+            <div className="card-subtitle my-3 text-muted d-flex justify-content-between flex-wrap">
               <div className="d-flex align-items-center">
                 <i className="material-icons mr-1">account_circle</i>
                 {getFullname(post.author)}
