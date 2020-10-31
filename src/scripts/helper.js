@@ -11,7 +11,7 @@ export const getContentPreview = (content) => {
   if (words.length < limit) {
     return content;
   } else {
-    let preview;
+    let preview = "";
     for (let i = 0; i < words.length; i++) {
       if (i >= limit) {
         break;
