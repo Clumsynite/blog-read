@@ -93,7 +93,8 @@ export const addComment = async (id, comment, token) => {
       credentials: "include",
       body: JSON.stringify(comment),
     });
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     return error;
   }
