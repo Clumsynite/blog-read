@@ -68,3 +68,17 @@ export const myProfile = async (token) => {
     return error;
   }
 };
+
+export const viewBlog = async (id, token) => {
+  try {
+    const response = await fetch(`${apiUrl}/blog/${id}/view`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    return await response.json();
+  } catch (error) {
+    return error;
+  }
+};
