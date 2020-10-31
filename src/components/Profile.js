@@ -42,7 +42,10 @@ const Profile = () => {
         </div>
       )}
       {profile.user && (
-        <div className="card mb-3 mx-auto shadow rounded" style={{ width: "24rem" }}>
+        <div
+          className="card mb-3 mx-auto shadow rounded"
+          style={{ width: "24rem" }}
+        >
           <div className="card-header bg-dark text-white">
             Joined {getRelativeTime(user.added)}
           </div>
@@ -89,7 +92,11 @@ const Profile = () => {
           return <BlogCard blog={blog} key={index} />;
         })}
 
-      {render === "comments" && <h1>Comments</h1>}
+      {render === "comments" && profile.comments.length === 0 && (
+        <div className="alert alert-info mx-auto w-75">
+          You haven't made any comments yet
+        </div>
+      )}
     </div>
   );
 };
