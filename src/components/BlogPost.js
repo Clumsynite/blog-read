@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLoading, Oval } from "@agney/react-loading";
+import { Editor } from "@tinymce/tinymce-react";
 import { viewBlog } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
 import CommentCard from "../Templates/CommentCard";
@@ -42,6 +43,12 @@ const BlogPost = () => {
     fetchPost();
   }, [id]);
 
+  const [commentTitle, setCommentTitle] = useState("");
+  const [commentContent, setCommentContent] = useState("");
+  const handleEditorChange = (content, editor) => {
+    setCommentContent(content);
+  };
+
   return (
     <div>
       {loading && (
@@ -74,6 +81,38 @@ const BlogPost = () => {
             </div>
             <div className="card-text">{post.content}</div>
           </div>
+        </div>
+      )}
+      {post.title && (
+        <div className="mb-4 shadow">
+          <input
+            type="text"
+            placeholder="Enter Comment Title"
+            maxLength="40"
+            onChange={(e) => {
+              setCommentTitle(e.target.value);
+            }}
+            value={commentTitle}
+            className="form-control"
+          />
+          <Editor
+            apiKey="iegn84mumhivsy1it2lvc8qjfxkaav0snoxsx4u66dxlnz3g"
+            initialValue="<p>This is the initial content of the editor</p>"
+            init={{
+              height: 200,
+              menubar: false,
+              plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table paste code help wordcount",
+              ],
+              toolbar:
+                "undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help",
+            }}
+            onEditorChange={handleEditorChange}
+          />
         </div>
       )}
       {comments.length > 0 &&
