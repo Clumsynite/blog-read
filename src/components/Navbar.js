@@ -50,7 +50,7 @@ const Navbar = (props) => {
           {props.server && (
             <div title="Connected">
               <svg height="20" width="20" cursor="pointer">
-                <circle cx="15" cy="10" r="5" fill="#00ff80" />
+                <circle cx="15" cy="10" r="5" fill="#00ffbf" />
               </svg>
             </div>
           )}
