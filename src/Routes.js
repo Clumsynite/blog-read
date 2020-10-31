@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
+import BlogPost from "./components/BlogPost";
 import { ping } from "./scripts/api-calls";
 import Particles from "./components/Particles";
 
@@ -58,6 +59,11 @@ const Routes = () => {
             />
             <AuthenticatedRoute exact path="/profile" component={Profile} />
             <AuthenticatedRoute exact path="/blogs" component={AllBlogs} />
+            <AuthenticatedRoute
+              exact
+              path="/blog/:id/view"
+              component={BlogPost}
+            />
             <Redirect to="/" />
           </Switch>
         </div>
