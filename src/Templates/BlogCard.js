@@ -10,14 +10,12 @@ const Card = (props) => {
   const { author, title, content, added, _id } = props.blog;
   return (
     <div className="card text-white bg-primary shadow mb-4 bg-white rounded">
-      <div className="card-header text-center bg-dark">
-        <Link to={`/blog/${_id}/view`} className="link">
-          {title}
-        </Link>
-      </div>
-      <div className="card-body bg-light text-dark">
-        <div className="card-text ">{getContentPreview(content)}</div>
-      </div>
+      <Link to={`/blog/${_id}/view`} className="link">
+        <div className="card-header text-center bg-dark">{title}</div>
+        <div className="card-body bg-light text-dark">
+          <div className="card-text ">{getContentPreview(content)}</div>
+        </div>
+      </Link>
       <div className="card-footer text-white bg-primary text-right d-flex justify-content-between flex-wrap">
         <div className="d-flex align-items-center">
           By {getFullname(author)}
