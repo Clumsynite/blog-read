@@ -85,9 +85,10 @@ export const viewBlog = async (id, token) => {
 
 export const addComment = async (id, comment, token) => {
   try {
-    const response = fetch(`${apiUrl}/blog/${id}/comment/new`, {
+    const response = await fetch(`${apiUrl}/blog/${id}/comment/new`, {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
       credentials: "include",
