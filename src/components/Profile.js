@@ -42,7 +42,7 @@ const Profile = () => {
         </div>
       )}
       {profile.user && (
-        <div className="card mb-3 mx-auto" style={{ width: "24rem" }}>
+        <div className="card mb-3 mx-auto shadow rounded" style={{ width: "24rem" }}>
           <div className="card-header bg-dark text-white">
             Joined {getRelativeTime(user.added)}
           </div>
