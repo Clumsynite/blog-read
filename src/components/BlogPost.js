@@ -28,6 +28,10 @@ const BlogPost = () => {
 
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [commentTitle, setCommentTitle] = useState("");
+  const [commentContent, setCommentContent] = useState(
+    "<p>Enter you comment here</p>"
+  );
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -40,7 +44,7 @@ const BlogPost = () => {
           return;
         }
         setPost(data.blog);
-        setComments(data.comment);
+        setComments(data.comment.reverse());
         setloading(false);
       } catch (error) {
         console.error(error);
@@ -48,12 +52,8 @@ const BlogPost = () => {
       }
     };
     fetchPost();
-  }, [id, token]);
+  }, [id, token, commentTitle, setCommentTitle]);
 
-  const [commentTitle, setCommentTitle] = useState("");
-  const [commentContent, setCommentContent] = useState(
-    "<p>Enter you comment here</p>"
-  );
   const handleEditorChange = (content, editor) => {
     setCommentContent(content);
   };
@@ -73,10 +73,6 @@ const BlogPost = () => {
   };
 
   const [posting, setPosting] = useState(false);
-  const { parentProps, commentLoading } = useLoading({
-    loading: !posting,
-    indicator: <TailSpin width="24" />,
-  });
   const newComment = async () => {
     try {
       const data = await addComment(
@@ -86,8 +82,8 @@ const BlogPost = () => {
       );
       setPosting(false);
       if (!data.error) {
-        setCommentContent("");
-        setCommentTitle("<p>Enter you comment here</p>");
+        setCommentTitle("");
+        setCommentContent("<p>Enter you comment here</p>");
       }
     } catch (error) {
       setPosting(false);
@@ -163,13 +159,14 @@ const BlogPost = () => {
             value={commentContent}
           />
           <button
-            {...parentProps}
-            className="btn btn-block btn-outline-secondary"
+            className={`btn btn-block ${
+              posting ? "btn-secondary" : "btn-outline-secondary"
+            }`}
             onClick={handleClick}
             disabled={posting}
           >
             {!posting && "Post your Comment"}
-            {commentLoading}
+            {posting && <TailSpin width="20" />}
           </button>
         </div>
       )}
