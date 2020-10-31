@@ -49,6 +49,10 @@ const BlogPost = () => {
     setCommentContent(content);
   };
 
+  const addComment = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       {loading && (
@@ -113,6 +117,12 @@ const BlogPost = () => {
             }}
             onEditorChange={handleEditorChange}
           />
+          <button
+            className="btn btn-block btn-outline-secondary"
+            onClick={addComment}
+          >
+            Post your Comment
+          </button>
         </div>
       )}
       {comments.length > 0 &&
