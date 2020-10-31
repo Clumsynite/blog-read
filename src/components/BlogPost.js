@@ -29,9 +29,7 @@ const BlogPost = () => {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [commentTitle, setCommentTitle] = useState("");
-  const [commentContent, setCommentContent] = useState(
-    "<p>Enter you comment here</p>"
-  );
+  const [commentContent, setCommentContent] = useState("");
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -83,7 +81,7 @@ const BlogPost = () => {
       setPosting(false);
       if (!data.error) {
         setCommentTitle("");
-        setCommentContent("<p>Enter you comment here</p>");
+        setCommentContent("");
       }
     } catch (error) {
       setPosting(false);
@@ -154,6 +152,7 @@ const BlogPost = () => {
                 "undo redo | formatselect | bold italic backcolor | " +
                 "alignleft aligncenter alignright alignjustify | " +
                 "bullist numlist outdent indent | removeformat | help",
+              placeholder: "<p>Enter you comment here</p>",
             }}
             onEditorChange={handleEditorChange}
             value={commentContent}
