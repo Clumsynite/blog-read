@@ -48,16 +48,11 @@ const Navbar = (props) => {
             </div>
           )}
           {props.server && (
-            <i
-              className="material-icons"
-              style={{
-                color: "#00ff80",
-                cursor: "pointer",
-              }}
-              title="Connected"
-            >
-              radio_button_unchecked
-            </i>
+            <div title="Connected">
+              <svg height="20" width="20" cursor="pointer">
+                <circle cx="15" cy="10" r="5" fill="#00ff80" />
+              </svg>
+            </div>
           )}
         </div>
         <button
