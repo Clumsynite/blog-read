@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLoading, Oval } from "@agney/react-loading";
 import { Editor } from "@tinymce/tinymce-react";
-import { viewBlog } from "../scripts/api-calls";
+import { viewBlog, addComment } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
 import CommentCard from "../Templates/CommentCard";
 import Error from "./Error";
 
 const BlogPost = () => {
   const { id } = useParams();
+  const token = localStorage.getItem("token");
   const [loading, setloading] = useState(true);
   const { containerProps, indicatorEl } = useLoading({
     loading,
@@ -17,11 +18,16 @@ const BlogPost = () => {
       style: { color: "#007BFF" },
     },
   });
-  const [post, setPost] = useState({});
-  const [comments, setComments] = useState([]);
   const [error, seterror] = useState("");
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    return setTimeout(() => {
+      seterror("");
+    }, 5000);
+  }, [error, seterror]);
+
+  const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
     const fetchPost = async () => {
       try {
         const data = await viewBlog(id, token);
@@ -41,7 +47,7 @@ const BlogPost = () => {
       }
     };
     fetchPost();
-  }, [id]);
+  }, [id, token]);
 
   const [commentTitle, setCommentTitle] = useState("");
   const [commentContent, setCommentContent] = useState("");
@@ -49,9 +55,30 @@ const BlogPost = () => {
     setCommentContent(content);
   };
 
-  const addComment = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
+    if (commentTitle.trim().length === 0) {
+      seterror("Comment title can't be empty");
+      return;
+    }else if(commentContent.trim().length === 0){
+      seterror("Comment content can't be empty. Template text isn't accepted");
+      return;
+    }else {
+      newComment()
+    }
   };
+
+  const newComment = async () => {
+    try {
+      const data = await addComment(id, {
+        title: commentTitle,
+        content: commentContent
+      }, token)
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div>
@@ -119,7 +146,7 @@ const BlogPost = () => {
           />
           <button
             className="btn btn-block btn-outline-secondary"
-            onClick={addComment}
+            onClick={handleClick}
           >
             Post your Comment
           </button>
