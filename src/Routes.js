@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
-import { ping } from "./scripts/api-calls";
+import { ping, userLogout } from "./scripts/api-calls";
 import Particles from "./components/Particles";
 
 const Routes = () => {
@@ -35,8 +35,25 @@ const Routes = () => {
         }
       }
     };
+    const logoutWhenNoCookie = async () => {
+      if (document.cookie === "") {
+        try {
+          const data = await userLogout();
+          if (data.message === "Logged out successfully") {
+            localStorage.clear();
+            setuser({});
+            setauthenticated(false);
+          } else {
+            console.error(data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    setTimeout(logoutWhenNoCookie, 2000);
     getStatus();
-  });
+  }, []);
 
   return (
     <div className="Routes">
