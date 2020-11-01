@@ -19,7 +19,7 @@ const Navbar = (props) => {
         localStorage.clear();
         props.clearUser();
         props.setAuth(false);
-        document.cookie = "";
+        document.cookie = "login=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
         history.push("/login");
       } else {
         console.error(data);
