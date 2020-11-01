@@ -42,11 +42,13 @@ const Signup = () => {
         setloading(false);
         if (data.user) {
           setsuccess(`
-          <div>Successfully create new account.</div>
-          <div>Firstname: ${data.user.firstname}</div>
-          <div>Lastname: ${data.user.lastname}</div>
-          <div>Username: ${data.user.username}</div>
-          <div>Password: ${password}</div>
+          <div>Successfully created new account.</div>
+          <div className="text-left>
+          <div><strong>Firstname</strong>: ${data.user.firstname}</div>
+          <div><strong>Lastname:</strong> ${data.user.lastname}</div>
+          <div><strong>Username:</strong> ${data.user.username}</div>
+          <div><strong>Password:</strong> ${password}</div>
+          </div>
           `);
           setfirstname("");
           setlastname("");
@@ -136,8 +138,8 @@ const Signup = () => {
         {error.length > 0 && <Error error={error} />}
       </div>
       {success.length > 0 && (
-        <div className="w-75 mx-auto text-center">
-          <div className="alert alert-success mt-3">
+        <div className="w-50 mx-auto shadow text-center">
+          <div className="alert bg-dark text-light mt-3">
             <Markup content={success} />
             <div>
               Move to
