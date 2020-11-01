@@ -70,7 +70,7 @@ const Navbar = (props) => {
         <div className="container">
           {!props.authenticated && (
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav ml-auto">
+              <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <NavLink
                     activeClassName="active"
