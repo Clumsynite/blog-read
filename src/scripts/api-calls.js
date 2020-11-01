@@ -9,6 +9,23 @@ export const ping = async () => {
   }
 };
 
+export const userSignup = async (user) => {
+  try {
+    const response = await fetch(`${apiUrl}/user/signup`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(user),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const userLogin = async (user) => {
   try {
     const response = await fetch(`${apiUrl}/auth/login`, {
