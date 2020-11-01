@@ -6,7 +6,7 @@ import { Markup } from "interweave";
 import { viewBlog, addComment } from "../scripts/api-calls";
 import { getRelativeTime, getFullname } from "../scripts/helper";
 import CommentCard from "../Templates/CommentCard";
-import Error from "./Error";
+import Error from "../Templates/Error";
 
 const BlogPost = () => {
   const { id } = useParams();

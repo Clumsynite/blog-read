@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLoading, Bars } from "@agney/react-loading";
 import { getAllBlogs } from "../scripts/api-calls";
 import BlogCard from "../Templates/BlogCard";
-import Error from "./Error";
+import Error from "../Templates/Error";
 
 const AllBlogs = () => {
   const [loading, setloading] = useState(true);
