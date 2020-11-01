@@ -41,6 +41,7 @@ const Login = (props) => {
         localStorage.setItem("user", user);
         props.setAuth(true);
         props.setUser(user);
+        document.cookie = "login=true";
         history.push("/");
       } catch (error) {
         setloading(false);
