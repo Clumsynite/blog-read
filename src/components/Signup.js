@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLoading, TailSpin } from "@agney/react-loading";
+import { TailSpin } from "@agney/react-loading";
+import { Markup } from "interweave";
+import { Link } from "react-router-dom";
 import Error from "../Templates/Error";
 import { userSignup } from "../scripts/api-calls";
 
 const Signup = () => {
   const [loading, setloading] = useState(false);
-  const { containerProps, indicatorEl } = useLoading({
-    loading: loading,
-    indicator: <TailSpin width="24" />,
-  });
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [username, setUsername] = useState("");
@@ -24,17 +22,36 @@ const Signup = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (username.trim() === "") {
+    if (firstname.trim() === "") {
+      setError("Firstname can't be Empty");
+    } else if (lastname.trim() === "") {
+      setError("Lastname can't be Empty");
+    } else if (username.trim() === "") {
       setError("Username can't be Empty");
     } else if (password.trim() === "") {
       setError("Password can't be Empty");
     } else {
       setloading(true);
       try {
-        const data = await userLogin({ username, password });
+        const data = await userSignup({
+          firstname,
+          lastname,
+          username,
+          password,
+        });
         setloading(false);
-        if (!data.user) {
-          return setError("Username or Password is wrong");
+        if (data.user) {
+          setsuccess(`
+          <div>Successfully create new account.</div>
+          <div>Firstname: ${data.user.firstname}</div>
+          <div>Lastname: ${data.user.lastname}</div>
+          <div>Username: ${data.user.username}</div>
+          <div>Password: ${password}</div>
+          `);
+          setfirstname("");
+          setlastname("");
+          setUsername("");
+          setPassword("");
         }
       } catch (error) {
         setloading(false);
@@ -46,12 +63,39 @@ const Signup = () => {
   return (
     <div className="Signup">
       <div
-        className="card shadow mx-auto text-center"
-        style={{ width: "18rem" }}
+        className="card shadow mx-auto text-center w-75"
+        style={{ backgroundColor: "transparent" }}
       >
-        <h3 className="card-header">Please Login</h3>
+        <h3 className="card-header">Create new account</h3>
         <div className="card-body mx-auto">
           <form method="" action="">
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <input
+                  type="text"
+                  placeholder="Enter Firstname"
+                  name="firstname"
+                  required
+                  minLength="6"
+                  autoFocus
+                  className="form-control form-control-lg text-center"
+                  onChange={(e) => setfirstname(e.target.value)}
+                  value={firstname || ""}
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <input
+                  type="text"
+                  placeholder="Enter Lastname"
+                  name="lastname"
+                  required
+                  minLength="6"
+                  className="form-control form-control-lg text-center"
+                  onChange={(e) => setlastname(e.target.value)}
+                  value={lastname || ""}
+                />
+              </div>
+            </div>
             <div className="form-group">
               <input
                 type="text"
@@ -59,9 +103,9 @@ const Signup = () => {
                 name="username"
                 required
                 minLength="6"
-                autoFocus
                 className="form-control form-control-lg text-center"
                 onChange={(e) => setUsername(e.target.value)}
+                value={username || ""}
               />
             </div>
             <div className="form-group">
@@ -73,21 +117,40 @@ const Signup = () => {
                 minLength="8"
                 className="form-control form-control-lg text-center"
                 onChange={(e) => setPassword(e.target.value)}
+                value={password || ""}
               />
             </div>
             <button
-              className="btn btn-outline-primary btn-block btn-lg "
+              className={`btn btn-block btn-lg ${
+                loading ? "btn-primary" : "btn-outline-primary"
+              }`}
               type="submit"
               onClick={submitForm}
               disabled={loading}
             >
-              {!loading && "Login"}
-              {indicatorEl}
+              {!loading && "Signup"}
+              {loading && <TailSpin width="24" />}
             </button>
           </form>
         </div>
         {error.length > 0 && <Error error={error} />}
       </div>
+      {success.length > 0 && (
+        <div className="w-75 mx-auto text-center">
+          <div className="alert alert-success mt-3">
+            <Markup content={success} />
+            <div>
+              Move to
+              <code>
+                <Link className="link mx-1" to="/login">
+                  Login
+                </Link>
+              </code>
+              Page
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
