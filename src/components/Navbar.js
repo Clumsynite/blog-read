@@ -80,6 +80,15 @@ const Navbar = (props) => {
                     Login
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to="/signup"
+                  >
+                    Signup
+                  </NavLink>
+                </li>
               </ul>
             </div>
           )}
