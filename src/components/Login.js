@@ -53,7 +53,7 @@ const Login = (props) => {
   return (
     <div className="Login" {...containerProps}>
       <div
-        className="card text-white bg-dark mx-auto text-center"
+        className="card shadow mx-auto text-center"
         style={{ width: "18rem" }}
       >
         <h3 className="card-header">Please Login</h3>
@@ -83,7 +83,7 @@ const Login = (props) => {
               />
             </div>
             <button
-              className="btn btn-primary btn-block btn-lg "
+              className="btn btn-outline-primary btn-block btn-lg "
               type="submit"
               onClick={submitForm}
               disabled={loading}
