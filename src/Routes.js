@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
+import Footer from "./components/Footer";
 import { ping, userLogout } from "./scripts/api-calls";
 import Particles from "./components/Particles";
 
@@ -86,6 +87,9 @@ const Routes = () => {
           </Switch>
         </div>
       </Router>
+      <div style={{ marginTop: 80 }}>
+        <Footer />
+      </div>
     </div>
   );
 };
