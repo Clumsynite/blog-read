@@ -53,6 +53,7 @@ const Routes = () => {
     };
     setTimeout(logoutWhenNoCookie, 2000);
     getStatus();
+    // eslint-disable-next-line
   }, []);
 
   return (
