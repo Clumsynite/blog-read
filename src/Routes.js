@@ -10,6 +10,7 @@ import UnauthenticatedRoute from "./Routes/UnauthenticatedRoute";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Signup from "./components/Signup";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
@@ -76,6 +77,7 @@ const Routes = () => {
               component={Login}
               appProps={{ setAuth: setauthenticated, setUser: setuser }}
             />
+            <UnauthenticatedRoute path="/signup" component={Signup} />
             <AuthenticatedRoute exact path="/profile" component={Profile} />
             <AuthenticatedRoute exact path="/blogs" component={AllBlogs} />
             <AuthenticatedRoute
