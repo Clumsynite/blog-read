@@ -54,7 +54,7 @@ const Login = (props) => {
     <div className="Login" {...containerProps}>
       <div
         className="card shadow mx-auto text-center"
-        style={{ width: "18rem" }}
+        style={{ width: "18rem", backgroundColor: "transparent" }}
       >
         <h3 className="card-header">Please Login</h3>
         <div className="card-body  mx-auto">
