@@ -19,6 +19,7 @@ const Navbar = (props) => {
         localStorage.clear();
         props.clearUser();
         props.setAuth(false);
+        document.cookie = "";
         history.push("/login");
       } else {
         console.error(data);
