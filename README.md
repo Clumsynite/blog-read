@@ -4,7 +4,16 @@
 
 Frontend built to acess and read the blogs, using [Blog-API](https://clumsy-blog.herokuapp.com/).
 
-> Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+- Refer Blog-Read Live Page [here](https://clumsynite.github.io/blog-read/)
+- Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+
+Blog-Read is where you can read the BlogPosts. If you want to post something yourself, you'll have to go to `Blog-Write`.
+Both sites need user accounts, in order to be accessed.
+
+If you are new and don't have an account, you can go to the [Signup](https://clumsynite.github.io/blog-read/#/signup) page and create a new account over there.
+> Be sure to remember you password, you can't reset it and there's nothing I can do if you forget it.
+
+After your authentication is successful, you can view all blog posts and Comment on those posts if you want to.
 
 ## Extra Packages used
 
