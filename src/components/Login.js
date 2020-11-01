@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLoading, TailSpin } from "@agney/react-loading";
+import { TailSpin } from "@agney/react-loading";
 import { useHistory } from "react-router-dom";
 import Error from "../Templates/Error";
 import { userLogin } from "../scripts/api-calls";
@@ -7,10 +7,6 @@ import { userLogin } from "../scripts/api-calls";
 const Login = (props) => {
   const history = useHistory();
   const [loading, setloading] = useState(false);
-  const { containerProps, indicatorEl } = useLoading({
-    loading: loading,
-    indicator: <TailSpin width="24" />,
-  });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -51,7 +47,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="Login" {...containerProps}>
+    <div className="Login">
       <div
         className="card shadow mx-auto text-center"
         style={{ width: "18rem", backgroundColor: "transparent" }}
@@ -83,13 +79,15 @@ const Login = (props) => {
               />
             </div>
             <button
-              className="btn btn-outline-primary btn-block btn-lg "
+              className={`btn btn-block btn-lg ${
+                loading ? "btn-primary" : "btn-outline-primary"
+              }`}
               type="submit"
               onClick={submitForm}
               disabled={loading}
             >
-              {!loading && "Login"}
-              {indicatorEl}
+              {!loading && "Signup"}
+              {loading && <TailSpin width="24" />}
             </button>
           </form>
         </div>
