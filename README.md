@@ -4,7 +4,17 @@
 
 Frontend built to acess and read the blogs, using [Blog-API](https://clumsy-blog.herokuapp.com/).
 
-Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+> Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+
+## Extra Packages used
+
+- [`@agney/react-loading`](https://github.com/agneym/react-loading) for loading animations
+- [`@tinymce/tinymce-react`](https://github.com/tinymce/tinymce-react) for TinyMCE Editor (used to post comments)
+- [`interweave`](https://github.com/milesj/interweave) to render string as HTML
+- [`moment`](https://github.com/moment/moment) to get relative time
+- [`react-particles-js`](https://github.com/Wufe/react-particles-js) for using Particles.js as background
+- [`react-router-dom`](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom) for handling routes.
+- [`gh-pages`](https://github.com/tschaub/gh-pages) to deploy react-app on Github Pages
 
 ## Available Scripts
 
