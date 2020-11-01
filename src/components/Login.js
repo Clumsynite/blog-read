@@ -42,7 +42,7 @@ const Login = (props) => {
         props.setAuth(true);
         props.setUser(user);
         document.cookie = "login=true";
-        history.push("/");
+        history.push("/blogs");
       } catch (error) {
         setloading(false);
         setError(error);
