@@ -19,7 +19,9 @@ import { ping, userLogout } from "./scripts/api-calls";
 import Particles from "./components/Particles";
 
 const Routes = () => {
-  const [user, setuser] = useState(localStorage.getItem("user") || {});
+  const [user, setuser] = useState(
+    JSON.parse(localStorage.getItem("user")) || {}
+  );
   const [authenticated, setauthenticated] = useState(
     localStorage.getItem("token") ? true : false
   );
