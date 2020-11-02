@@ -10,7 +10,7 @@ const Card = (props) => {
   const { author, title, content, added, _id } = props.blog;
   return (
     <div className="card text-white bg-primary shadow mb-4 bg-white rounded">
-      <Link to={`/blog/${_id}/view`} className="link">
+      <Link to={`/blog/${_id}/view`} className="link mx-0">
         <div className="card-header text-center bg-dark">{title}</div>
         <div className="card-body bg-light text-dark">
           <div className="card-text ">{getContentPreview(content)}</div>
