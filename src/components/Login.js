@@ -86,7 +86,7 @@ const Login = (props) => {
               onClick={submitForm}
               disabled={loading}
             >
-              {!loading && "Signup"}
+              {!loading && "Login"}
               {loading && <TailSpin width="24" />}
             </button>
           </form>
