@@ -125,7 +125,7 @@ const BlogPost = () => {
           <Error error={error} />
         </div>
       )}
-      {post.title && (
+      {(post.title && !post.draft) && (
         <div className="mb-4 shadow">
           <input
             type="text"
