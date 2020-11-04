@@ -34,7 +34,7 @@ const BlogPost = () => {
     const fetchPost = async () => {
       try {
         const data = await viewBlog(id, token);
-        if (data.error) {
+        if (data.error || data.blog === null) {
           setloading(false);
           seterror(
             `Blog Post not found. There's a Problem fetching Post: ${id}`
@@ -125,7 +125,7 @@ const BlogPost = () => {
           <Error error={error} />
         </div>
       )}
-      {(post.title && !post.draft) && (
+      {post.title && !post.draft && (
         <div className="mb-4 shadow">
           <input
             type="text"
