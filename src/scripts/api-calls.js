@@ -117,3 +117,17 @@ export const addComment = async (id, comment, token) => {
     return error;
   }
 };
+
+export const viewUser = async (id, token) => {
+  try {
+    const response = await fetch(`${apiUrl}/user/${id}/view`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+    });
+    return await response.json();
+  } catch (error) {
+    return error;
+  }
+};
