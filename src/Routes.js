@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import AuthenticatedRoute from "./Routes/AuthenticatedRoute";
 import UnauthenticatedRoute from "./Routes/UnauthenticatedRoute";
+import Particles from "./components/Particles";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -14,9 +15,9 @@ import Signup from "./components/Signup";
 import AllBlogs from "./components/AllBlogs";
 import Profile from "./components/Profile";
 import BlogPost from "./components/BlogPost";
+import ViewUser from "./components/ViewUser";
 import Footer from "./components/Footer";
 import { ping, userLogout } from "./scripts/api-calls";
-import Particles from "./components/Particles";
 
 const Routes = () => {
   const [user, setuser] = useState(
@@ -86,6 +87,11 @@ const Routes = () => {
               exact
               path="/blog/:id/view"
               component={BlogPost}
+            />
+            <AuthenticatedRoute
+              exact
+              path="/user/:id/view"
+              component={ViewUser}
             />
             <Redirect to="/" />
           </Switch>
