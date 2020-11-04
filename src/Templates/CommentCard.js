@@ -1,4 +1,5 @@
 import { Markup } from "interweave";
+import { Link } from "react-router-dom";
 import { getRelativeTime, getFullname } from "../scripts/helper";
 import "../styles/BlogCard.css";
 
@@ -13,14 +14,17 @@ const Card = (props) => {
         </div>
       </div>
       <div className="card-footer text-white bg-secondary text-right d-flex justify-content-between flex-wrap">
-        <div className="d-flex align-items-center">
+        <Link
+          to={`/user/${author._id}/view`}
+          className="d-flex align-items-center link-white"
+        >
           <i className="material-icons mr-1">account_circle</i>
           {getFullname(author)}
           <strong>
             <span className="badge badge-pill badge-dark mx-1"> AKA </span>
           </strong>
           {author.username}
-        </div>
+        </Link>
         <div className="d-flex align-items-center">
           <i className="material-icons mr-1">access_time</i>
           {getRelativeTime(added)}
