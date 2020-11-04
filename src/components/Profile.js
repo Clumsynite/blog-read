@@ -50,7 +50,7 @@ const Profile = () => {
       {profile.user && (
         <div
           className="card mb-4 mx-auto shadow rounded"
-          style={{width: "19rem"}}
+          style={{ width: "19rem" }}
         >
           <div className="card-header bg-dark text-white">
             Joined {getRelativeTime(user.added)}
@@ -108,16 +108,14 @@ const Profile = () => {
         profile.comments.map((comment, index) => {
           const { blog } = comment;
           return (
-            <Link
-              to={`/blog/${blog._id}/view`}
-              className="link shadow"
-              key={index}
-            >
-              <div className="card-header text-center bg-dark text-light align-items-center">
-                You commented on <code>{blog.title}</code>
-              </div>
+            <div className="shadow" key={index}>
+              <Link to={`/blog/${blog._id}/view`} className="link-white ">
+                <div className="card-header text-center bg-dark text-light align-items-center">
+                  You commented on <code>{blog.title}</code>
+                </div>
+              </Link>
               <CommentCard comment={comment} />
-            </Link>
+            </div>
           );
         })}
     </div>
