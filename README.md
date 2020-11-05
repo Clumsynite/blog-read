@@ -4,8 +4,9 @@
 
 Frontend built to acess and read the blogs, using [Blog-API](https://clumsy-blog.herokuapp.com/).
 
-- Refer Blog-Read Live Page [here](https://clumsynite.github.io/blog-read/)
-- Refer the API repository, [here](https://github.com/Clumsynite/blog-api)
+- Refer Blog-Read Live Page. [**_HERE_**](https://clumsynite.github.io/blog-read/)
+- Refer Blog-Write. [**_Live Page_**](https://clumsynite.github.io/blog-write/) **||** [**_Repository_**](https://github.com/clumsynite/blog-write)
+- Refer the API repository. [**_HERE_**](https://github.com/Clumsynite/blog-api)
 
 Blog-Read is where you can read the BlogPosts. If you want to post something yourself, you'll have to go to `Blog-Write`.
 Both sites need user accounts, in order to be accessed.
@@ -79,6 +80,12 @@ After clicking those buttons you can see posts/comments you have made.
 ### Logout
 
 > A Link which runs the logout function, rendered in navbar after authenticaion is successful.
+
+## Cards
+
+BlogPost and Commentcards have author's Link as footer. Which'll take you to the author's profile onClick.
+
+Author's profile has features similar to your profile, where you can view their posts and comments.
 
 ## Extra Packages used
 
